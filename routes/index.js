@@ -3,11 +3,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
+    res.render('index ' + req.timeObject, {title: 'Express'});
 });
 
 router.get("/test", (req, res, next) => {
     res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
+});
+
+router.get("/time", (req, res) => {
+    // receives timeObject from timeMiddleWare in app.js
+    res.send("time: " + req.timeObject);
 });
 
 router.put("/test/:item", (req, res, next) => {
